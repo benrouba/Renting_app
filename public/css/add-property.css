@@ -1,0 +1,23 @@
+
+* {
+    font-family: "Rubik", sans-serif;
+}
+.title{
+    font-size: 32px;
+    font-weight: 700;
+    color: #000;
+}
+input,select{
+    height: 48px !important;
+}
+.price{
+    right: 40px;
+    top: 55%;
+}
+.add_property_btn{
+    border-radius: 8px;
+    background-color: #00fffb;
+    color: #000;
+    font-size: 16px;
+    padding: 10px 20px;
+}
