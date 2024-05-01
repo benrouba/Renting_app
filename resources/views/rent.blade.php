@@ -36,23 +36,23 @@
                     <div class="mb-3">
                         <div class="mb-2"><b>PROVINCE</b></div>
                         @foreach ($provinces as $item)
-                            <button class="btn border_1 mb-1">
+                            <button class="btn border_1 mb-1 province" value="{{$item->province}}">
                                 {{ $item->province }}
                             </button>
                         @endforeach
                     </div>
                     <div class="mb-3">
                         <div class="mb-2"><b>NUMBER OF ROOMS </b></div>
-                        <button class="btn border_1">
+                        <button class="btn border_1 room" value="1">
                             1
                         </button>
-                        <button class="btn border_1">
+                        <button class="btn border_1 room" value="2">
                             2
                         </button>
-                        <button class="btn border_1">
+                        <button class="btn border_1 room" value="3">
                             3
                         </button>
-                        <button class="btn border_1">
+                        <button class="btn border_1 room" value="4">
                             4
                         </button>
                     </div>
@@ -63,6 +63,11 @@
                             <span>{{ $minprice }} DZD</span>
                             <span>{{ $maxprice }} DZD</span>
                         </div>
+                    </div>
+                    <div>
+                        <button class="btn" id="reset">
+                            Reset
+                        </button>
                     </div>
                 </div>
             </div>

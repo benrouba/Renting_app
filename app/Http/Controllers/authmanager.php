@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-
+use Request as RequestRequest;
 
 class authmanager extends Controller
 {
@@ -27,12 +27,30 @@ class authmanager extends Controller
         }
         return view('register');
     }
-    function rent()
+    function rent(Request $request)
     {
-        // an sql query to get all the properties from the database
-        // bring the provinces from the database without repeating them
+        // if one of the filters is selected then the properties will be filtered according to the selected filter, the filters are province, price, rooms_number and rooms_number
+        $query = DB::table('properties');
+
+        if ($request->filled('province')) {
+            $query->where('province', $request->province);
+
+        }
+
+        if ($request->filled('room')) {
+            $query->where('rooms_number', $request->room);
+        }
+
+        if ($request->filled('minPrice')) {
+            $query->where('price', '>=', $request->minPrice);
+        }
+
+        if ($request->filled('maxPrice')) {
+            $query->where('price', '<=', $request->maxPrice);
+        }
+
+        $properties = $query->get();
         $provinces = DB::table('properties')->select('province')->distinct()->get();
-        $properties = DB::table('properties')->get();
         // get the least price and the highest price but not according to the assci order
         $minprice = DB::table('properties')->select('*')->min('price');
 
