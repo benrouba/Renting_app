@@ -29,5 +29,6 @@ Route::get('/adminpage', [authmanager::class , 'adminpage'])->name('adminpage')-
 Route::get('/rent', [authmanager::class ,'rent'])->name('rent');
 Route::get('/add-property', [authmanager::class ,'addproperty'])->name('add-property');
 Route::post('/add-property', [authmanager::class ,'postproperty'])->name('postproperty');
+Route::get('/property/{id}', [authmanager::class ,'property'])->name('property');
 
 

@@ -27,34 +27,37 @@ class authmanager extends Controller
         }
         return view('register');
     }
+    function property($id)
+    {
+        $property = DB::table('properties')->where('id', $id)->first();
+        $property->owner= DB::table('users')->where('id', $property->propertyownerid)->first();
+        return view('property', ['property' => $property]);
+    }
     function rent(Request $request)
     {
         // if one of the filters is selected then the properties will be filtered according to the selected filter, the filters are province, price, rooms_number and rooms_number
         $query = DB::table('properties');
-
+        $minprice = DB::table('properties')->select('*')->min('price');
+        $maxprice = DB::table('properties')->max('price');
         if ($request->filled('province')) {
             $query->where('province', $request->province);
-
         }
-
         if ($request->filled('room')) {
             $query->where('rooms_number', $request->room);
         }
 
         if ($request->filled('minPrice')) {
-            $query->where('price', '>=', $request->minPrice);
+            $query->where('price', '>=', $request->minPrice * $maxprice / 100);
         }
 
         if ($request->filled('maxPrice')) {
-            $query->where('price', '<=', $request->maxPrice);
+            $query->where('price', '<=', $request->maxPrice * $maxprice / 100);
         }
 
         $properties = $query->get();
         $provinces = DB::table('properties')->select('province')->distinct()->get();
         // get the least price and the highest price but not according to the assci order
-        $minprice = DB::table('properties')->select('*')->min('price');
 
-        $maxprice = DB::table('properties')->max('price');
         return view('rent', ['properties' => $properties, 'provinces' => $provinces, 'minprice' => $minprice, 'maxprice' => $maxprice]);
 
     }

@@ -36,7 +36,7 @@
                     <div class="mb-3">
                         <div class="mb-2"><b>PROVINCE</b></div>
                         @foreach ($provinces as $item)
-                            <button class="btn border_1 mb-1 province" value="{{$item->province}}">
+                            <button class="btn border_1 mb-1 province" value="{{ $item->province }}">
                                 {{ $item->province }}
                             </button>
                         @endforeach
@@ -60,7 +60,7 @@
                         <div class="mb-3"><b>PRICE </b></div>
                         <div id="range-slider-example"></div>
                         <div class="d-flex justify-content-between mt-3">
-                            <span>{{ $minprice }} DZD</span>
+                            <span>0 DZD</span>
                             <span>{{ $maxprice }} DZD</span>
                         </div>
                     </div>
@@ -75,42 +75,44 @@
                 <div class="row">
                     @foreach ($properties as $key_carousel => $item)
                         <div class="col-md-2 p_12_0">
-                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    @foreach (json_decode($item->images) as $key => $image)
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"
-                                            class="{{ $key == 0 ? 'active' : '' }}"></li>
-                                    @endforeach
-                                </ol>
+                            <a href="{{ route('property', ['id' => $item->id]) }}">
+                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                        @foreach (json_decode($item->images) as $key => $image)
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"
+                                                class="{{ $key == 0 ? 'active' : '' }}"></li>
+                                        @endforeach
+                                    </ol>
 
-                                <div class="carousel-inner">
-                                    @foreach (json_decode($item->images) as $key => $image)
-                                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                            <img src="{{ asset('images/' . $image) }}" class="d-block w-100 br_8 carousel_img"
-                                                alt="...">
-                                        </div>
-                                    @endforeach
+                                    <div class="carousel-inner">
+                                        @foreach (json_decode($item->images) as $key => $image)
+                                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                                <img src="{{ asset('images/' . $image) }}"
+                                                    class="d-block w-100 br_8 carousel_img" alt="...">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                        data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                        data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
                                 </div>
-                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                                    data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                                    data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                            <div class="mt-2">
-                                <b> {{ $item->address }}, {{$item->province}}</b>
-                                <div class="">
-                                    <span class="">{{ $item->description }}</span>
+                                <div class="mt-2">
+                                    <b> {{ $item->address }}, {{ $item->province }}</b>
+                                    <div class="">
+                                        <span class="">{{ $item->description }}</span>
+                                    </div>
+                                    <div class="mt-1">
+                                        <span class="price"> {{ $item->price }} DZD</span>
+                                    </div>
                                 </div>
-                                <div class="mt-1">
-                                    <span class="price"> {{ $item->price }} DZD</span>
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     @endforeach
 
@@ -127,6 +129,10 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script>
+        var min = {{ $minprice }};
+        var max = {{ $maxprice }};
     </script>
     <script src="{{ asset('js/rangeslider.umd.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
