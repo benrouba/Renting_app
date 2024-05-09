@@ -14,9 +14,7 @@ use App\Http\Controllers\authmanager;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [authmanager::class ,'home'])->name('home');
 // Route::get('/', function () {
 //     return view('welcome');
 // })->middleware(['auth', 'verified'])->name('home');

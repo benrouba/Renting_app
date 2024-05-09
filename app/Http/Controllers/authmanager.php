@@ -65,6 +65,18 @@ class authmanager extends Controller
     {
         return view('add-property');
     }
+    function home()
+    {
+        $provinces = DB::table('properties')->select('province')->distinct()->get();
+        // select the first property from each province
+        foreach ($provinces as $province) {
+            // take the first image of the property
+            $property = DB::table('properties')->where('province', $province->province)->first();
+            $property->image = json_decode($property->images)[0];
+            $province->property = $property;
+        }
+        return view('welcome', ['provinces' => $provinces]);
+    }
     function postproperty(Request $request)
     {
         $request->validate([
