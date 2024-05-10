@@ -12,6 +12,8 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
 </head>
 
 <body>
@@ -106,7 +108,8 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img class="d-block w-100"
-                                src="{{ asset('images/01_Sonder_The_Winfield___Los_Angeles.png') }}" alt="First slide">
+                                src="{{ asset('images/01_Sonder_The_Winfield___Los_Angeles.png') }}"
+                                alt="First slide">
                         </div>
                         <div class="carousel-item">
                             <img class="d-block w-100" src="{{ asset('images/02_Sonder_Business_Bay___Dubai.png') }}"
@@ -136,7 +139,7 @@
         </div>
     </section>
     <section>
-        <div class="container">
+        <div class="container pb-5">
             <div class="my-5">
                 <h2 class="main_color f48">A world of choice</h2>
                 <p class="f18 main_color lh30">From a room for a night to a loft for as long as you like, <br> there’s
@@ -183,236 +186,151 @@
         </div>
     </section>
     <section>
-        <div class="container pt-5">
-            <h2 class="main_color f48">A stay infused with <br> creativity and culture
-            </h2>
-            <p class="f24 main_color lh30">From award-winning interiors to curated neighborhood <br> guides, our stays
-                celebrate what’s special about each city <br> we call home.
-            </p>
-            <ul class="nav nav-pills">
-                @foreach ($provinces as $key => $item)
-                    <li class="{{ $key == 0 ? 'active' : '' }}"><a data-toggle="pill" class="main_color f18 pr-3"
-                            href="#{{ $item->province }}">{{ $item->province }}</a>
-                @endforeach
-            </ul>
-            <div class="tab-content mt-3">
-                @foreach ($provinces as $key => $item)
-                    <div id="{{ $item->province }}" class="tab-pane fade in {{ $key == 0 ? 'active' : '' }} ">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <img src="{{ asset('images/' . $item->property->image) }}" alt=""
-                                    class="width_inherit property_img">
+        <div class="pt-5 beige_back">
+            <div class="container">
+                <h2 class="main_color f48">A stay infused with <br> creativity and culture
+                </h2>
+                <p class="f24 main_color lh30">From award-winning interiors to curated neighborhood <br> guides, our
+                    stays
+                    celebrate what’s special about each city <br> we call home.
+                </p>
+                <ul class="nav nav-tabs py-3">
+                    @foreach ($provinces as $key => $item)
+                        <li class=""><a href="#{{ $item->province }}" data-toggle="tab"
+                                class="main_color f18 pr-3 {{ $key == 0 ? 'active' : '' }}">{{ $item->province }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+                <div class="tab-content pb-5">
+                    @foreach ($provinces as $key => $item)
+                        <div class="tab-pane pt-5 {{ $key == 0 ? 'active' : '' }}" id="{{ $item->province }}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img src="{{ asset('images/' . $item->property->image) }}" alt=""
+                                        class="width_inherit property_img">
 
-                            </div>
-                            <div class="col-md-6 d-flex  flex-column justify-content-center ">
-                                <h3 class="main_color f30 d-flex align-items-center"> <span
-                                        class="material-symbols-outlined">
-                                        location_on
-                                    </span> {{ $item->property->address }}, {{ $item->property->province }}</h3>
+                                </div>
+                                <div class="col-md-6 d-flex  flex-column justify-content-center ">
+                                    <h3 class="main_color f30 d-flex align-items-center"> <span
+                                            class="material-symbols-outlined">
+                                            location_on
+                                        </span> {{ $item->property->address }}, {{ $item->property->province }}</h3>
                                     <p class="f16 pt-3">
                                         {{ $item->property->description }}
                                     </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
-            <div class="py-5">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quasi reprehenderit iusto aliquam facilis
-                possimus?
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-</body>
-
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{--
-
-
-
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="{{ asset('CSS/home.css') }}">
-    <title>home</title>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
-
-    <header>
-        <div class="content flex_space">
-            <div class="logo">
-                <h1>easyrent</h1>
-                <span class="material-symbols-outlined">
-                    real_estate_agent
-                </span>
-            </div>
-            <div class="myownlist">
-                <ul>
-                    <li><a href="{{ route('adminpage') }}">admin</a></li>
-                    <li><a href="#">home</a></li>
-                    <li><a href="#">Buy</a></li>
-                    <li><a href="{{ route('rent') }}">Rent</a></li>
-                    @if (!Auth::check())
-                       <li> <a href="{{ route('register') }}">Register</a></li>
-                    @endif
-                    @if (!Auth::check())
-                        <li><a href="{{ route('login') }}">login</a></li>
-                    @endif
-                    <li class="material-symbols-outlined">
-                        search
-                    </li>
-                   @if (Auth::check())
-                   <button class="primary-btn"><a href="{{ route('logout') }}">logout</a></button>
-                   @endif
-                </ul>
-            </div>
-        </div>
-    </header>
-
     <section>
-
-        <div class="container">
-            <div class="text">
-                <p>dz property to rent</p>
+        <div class="position-relative">
+            <div class="video_container">
+                <video autoplay loop muted src="{{ asset('images/background-video.mp4') }}" class="w-100"
+                    type="video/mp4"></video>
             </div>
-            <p>Search using 'town name'</p>
-            <div class="item">
-                <form>
-                    <select name="" id="">
-
-                        <option value="town name">twon name</option>
-                        <option value="taref">taref</option>
-                        <option value="annaba">annaba</option>
-                        <option value="alger">alger</option>
-                        <option value="beskra">beskra</option>
-                        <option value="jijel">jijel</option>
-                        <option value="bjaya">bjaya</option>
-                        <option value="wergla">wergla</option>
-                    </select>
-
-                    <button type="submit" class="secondary-btn">to rent</button>
-                </form>
+            <div class="video_text">
+                <h2 class="text-white f48">Hotel amenities <br> without hotel formality</h2>
+                <p class="text-white lh30 pt-4">From simple self check-in to boutique <br> bathroom amenities, we bring
+                    the best <br> of a
+                    hotel without any of the formality.
+                </p>
             </div>
         </div>
     </section>
-
-    <section class="presentation">
-
-
-        <h2>Dashboards to rent - find your next move with us</h2>
-        <p> From student lettings to studio flats, detached homes or even a luxury Mayfair penthouse. Whatever home
-            you're looking for,<br> we're here to help with the algeria largest selection of homes to rent.</p>
-
-    </section>
-
-    <section class="pre-signup">
-
-        <h3>Sign in to streamline your search</h3>
-        <div class="flex">
-            <p>Save properties, create alerts and keep track of the enquiries you send to agents.</p>
-            <button class="secondary-btn">sing in or create un account</button>
+    <section>
+        <div class="container my-5">
+            <div>
+                <h2 class="main_color f48">Every stay has a story</h2>
+                <p class="f18 main_color lh30">It’s hard to explain what makes EasyRent so special. Unless,<br>of
+                    course, you’re one of our guests. </p>
+            </div>
         </div>
+        <div class="container my-5 ">
+            <div class="owl-carousel carousel_container">
+                <div class="p-4 yellow_back mx-2 br_88_t_r d-flex flex-column justify-content-center">
+                    <p class="main_color f24"> "Our stay at the Wellborne was absolutely fabulous! The check-in
+                        process was a breeze. The room
+                        and
+                        entire hotel were adorably decorated and everything was super clean!"</p>
+                    <p class="f12 main_color">Orlando Bloom</p>
+                </div>
+                <div class="p-4 bleu_back mx-2 br_88_b_l d-flex flex-column justify-content-center">
+                    <p class="text-white f24"> “Love the app! It works like magic and all the information is super
+                        helpful to make the experience seamless”
+                    </p>
+                    <p class="f12 text-white">Orlando Bloom</p>
+                </div>
+                <div class="p-4 green_back mx-2 br_88_t_r d-flex flex-column justify-content-center">
+                    <p class="text-white f24">"Loved everything about Sonder. The staff made me feel at home. Would
+                        definitely recommend this to everyone looking for a home away from home."</p>
+                    <p class="f12 text-white">Orlando Bloom</p>
+                </div>
+                <div class="p-4 light_green_back mx-2 br_88_t_r d-flex flex-column justify-content-center">
+                    <p class="main_color f24"> "I had a wonderful stay and was blown away by the thoughtful design and
+                        functionality of the apartment. Can’t wait to check out other Sonders in the future."</p>
+                    <p class="f12 main_color">Orlando Bloom</p>
+                </div>
+            </div>        </div>
     </section>
-    <div class="prbutton">
-        <button class="secondary-btn"><a href="buy.html">buy</a></button>
-        <button class="secondary-btn"><a href="rent.html">rent</a></button>
-        <button class="secondary-btn"><a href="sale.html">sale</a></button>
-
-    </div>
-
-    </section>
-    <footer class="footer">
-        <div class="containerf">
-            <div class="row">
-                <div class="footer-col">
-                    <h4>company</h4>
-                    <ul>
-                        <li><a href="#">about us </a></li>
-                        <li><a href="#">our services</a></li>
-                        <li><a href="#">privacy policy</a></li>
-                        <li><a href="#">affiliate program</a></li>
-
-                    </ul>
+    <footer>
+        <div class="main_background_color">
+            <div class="container py-5">
+                <div class="d-flex text-white">
+                    <h1>Easyrent</h1>
+                    <span class="material-symbols-outlined">
+                        real_estate_agent
+                    </span>
                 </div>
-                <div class="footer-col">
-                    <h4>get help</h4>
-                    <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">shipping</a></li>
-                        <li><a href="#">returns</a></li>
-                        <li><a href="#">order status</a></li>
-                        <li><a href="#">payment option</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>online shop</h4>
-                    <ul>
-                        <li><a href="#">watch</a></li>
-                        <li><a href="#">bag</a></li>
-                        <li><a href="#">shoes</a></li>
-                        <li><a href="#">dress</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>follow us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <div class="row">
+                    <div class="col-md-3">
+                        <ul class="nav flex-column ">
+                            <li class="nav-item">
+                                <a class="nav-link active text-white" href="#">About us </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white disabled" href="#" tabindex="-1"
+                                    aria-disabled="true">Disabled</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script>
+        $(document).ready(function() {
+            $(".owl-carousel").owlCarousel({
+                // autoplay: true,
+                center: true,
+                loop: true,
+                items: 2,
+                margin: 20,
+
+
+            });
+
+        });
+    </script>
 </body>
 
-</html>  --}}
+</html>
