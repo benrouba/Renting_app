@@ -15,11 +15,10 @@ class Admin
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {  
-         if(Auth()->user()->usertype == 'admin')
-        {
-         return $next($request);
-    }
-       abort (401);
+    {
+        if (Auth()->user()->usertype == 'admin') {
+            return $next($request);
+        }
+        abort(401);
     }
 }

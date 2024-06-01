@@ -12,6 +12,9 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
 </head>
@@ -21,12 +24,14 @@
         <div class="main_back">
             <div class="container">
                 <nav class="navbar navbar-expand-md navbar-light">
-                    <div class="d-flex main_color">
-                        <h1>Easyrent</h1>
-                        <span class="material-symbols-outlined">
-                            real_estate_agent
-                        </span>
-                    </div>
+                    <a href="/" class="clickable">
+                        <div class="d-flex main_color">
+                            <h1>Easyrent</h1>
+                            <span class="material-symbols-outlined">
+                                real_estate_agent
+                            </span>
+                        </div>
+                    </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -41,7 +46,7 @@
                                 <a class="nav-link main_color f16" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link main_color f16" href="#">Buy</a>
+                                <a class="nav-link main_color f16" href="{{route('buy')}}">Buy</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link main_color f16" href="{{ route('rent') }}">Rent</a>
@@ -274,12 +279,13 @@
                         functionality of the apartment. Can’t wait to check out other Sonders in the future."</p>
                     <p class="f12 main_color">Orlando Bloom</p>
                 </div>
-            </div>        </div>
+            </div>
+        </div>
     </section>
     <footer>
         <div class="main_background_color">
             <div class="container py-5">
-                <div class="d-flex text-white">
+                <div class="d-flex text-white mb-4">
                     <h1>Easyrent</h1>
                     <span class="material-symbols-outlined">
                         real_estate_agent
@@ -287,22 +293,71 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <ul class="nav flex-column ">
+                        <span class="text-secondary ">QUICK MENU</span>
+                        <ul class="nav flex-column mt-2">
                             <li class="nav-item">
-                                <a class="nav-link active text-white" href="#">About us </a>
+                                <a class="nav-link text-white py-2 px-0" href="{{ route('adminpage') }}">Admin </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#">Link</a>
+                                <a class="nav-link text-white py-2 px-0" href="/">Home </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#">Link</a>
+                                <a class="nav-link text-white py-2 px-0" href="{{route('buy')}}">Buy </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white disabled" href="#" tabindex="-1"
-                                    aria-disabled="true">Disabled</a>
+                                <a class="nav-link text-white py-2 px-0" href="{{ route('rent') }}">Rent </a>
+                            </li>
+                            <li class="nav-item">
+                                @if (!Auth::check())
+                                    <a class="nav-link text-white py-2 px-0" href="{{ route('login') }}">Login </a>
+                                @endif
+                            </li>
+                            <li class="nav-item">
+                                @if (!Auth::check())
+                                    <a class="nav-link text-white py-2 px-0" href="{{ route('register') }}">Register
+                                    </a>
+                                @endif
                             </li>
                         </ul>
                     </div>
+                    <div class="col-md-3">
+                        <span class="text-secondary ">SUPPORT</span>
+                        <ul class="nav flex-column mt-2">
+                            <li class="nav-item">
+                                <a class="nav-link text-white  py-2 px-0" href="#">Help Center </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="text-secondary ">SOCIAL</span>
+                        <ul class="nav  mt-2">
+                            <li class="nav-item">
+                                <a class="nav-link text-white py-2 px-0 mr-3"target='_blank'
+                                    href="{{ url('http://www.facebook.com/') }}"><i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white py-2 px-0 mr-3"target='_blank'
+                                    href="{{ url('http://www.twitter.com/') }}"><i class="fab fa-twitter"></i> </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white py-2 px-0 mr-3"target='_blank'
+                                    href="{{ url('http://www.instagram.com/') }}"><i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white py-2 px-0 mr-3"target='_blank'
+                                    href="{{ url('http://www.linkedin.com/') }}"><i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 text-white f20 mt-5 mb-3">Ⓒ 2024 EasyRent Holdings Inc. All rights reserved.
+                    </div>
+                    <div class="col-sm-4 text-white f20 mt-5 mb-3">+213 655879412</div>
                 </div>
             </div>
         </div>
@@ -320,12 +375,21 @@
     <script>
         $(document).ready(function() {
             $(".owl-carousel").owlCarousel({
-                // autoplay: true,
+                autoplay: true,
                 center: true,
                 loop: true,
                 items: 2,
                 margin: 20,
-
+                responsive: {
+                    // breakpoint from 0 up
+                    0: {
+                        items: 1,
+                    },
+                    // breakpoint from 768 up
+                    992: {
+                        items: 2,
+                    }
+                }
 
             });
 

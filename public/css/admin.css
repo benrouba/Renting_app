@@ -1,0 +1,26 @@
+.greyColor{
+    color: #738987 !important;
+}
+.light_green_back{
+    background-color: #EAF2F1 !important;
+}
+.main_color{
+    color: #073937 !important;
+}
+body,html{
+    height: 100%;
+
+}
+body {
+    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Rubik', sans-serif !important;
+}
+.nav-link{
+    padding: .8rem 1rem !important;
+}
+th,td{
+    text-align:  center !important;
+}
+a:hover{
+    text-decoration: none !important;
+}

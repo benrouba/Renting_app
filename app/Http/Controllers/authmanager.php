@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use Request as RequestRequest;
 
 class authmanager extends Controller
 {
@@ -53,18 +52,49 @@ class authmanager extends Controller
         if ($request->filled('maxPrice')) {
             $query->where('price', '<=', $request->maxPrice * $maxprice / 100);
         }
-
+        $query->where('forrent', 1);
         $properties = $query->get();
         $provinces = DB::table('properties')->select('province')->distinct()->get();
-        // get the least price and the highest price but not according to the assci order
-
         return view('rent', ['properties' => $properties, 'provinces' => $provinces, 'minprice' => $minprice, 'maxprice' => $maxprice]);
+
+    }
+
+    function buy(Request $request)
+    {
+
+        $query = DB::table('properties');
+        $minprice = DB::table('properties')->select('*')->min('price');
+        $maxprice = DB::table('properties')->max('price');
+        if ($request->filled('province')) {
+            $query->where('province', $request->province);
+        }
+        if ($request->filled('room')) {
+            $query->where('rooms_number', $request->room);
+        }
+
+        if ($request->filled('minPrice')) {
+            $query->where('price', '>=', $request->minPrice * $maxprice / 100);
+        }
+
+        if ($request->filled('maxPrice')) {
+            $query->where('price', '<=', $request->maxPrice * $maxprice / 100);
+        }
+        $query->where('forrent', 0);
+        $properties = $query->get();
+        $provinces = DB::table('properties')->select('province')->distinct()->get();
+        return view('buy', ['properties' => $properties, 'provinces' => $provinces, 'minprice' => $minprice, 'maxprice' => $maxprice]);
 
     }
     function addproperty()
     {
         return view('add-property');
     }
+    function clients()
+    {
+        $clients = DB::table('users')->where('usertype', "client")->get();
+        return view('clients', ['clients' => $clients]);
+    }
+
     function home()
     {
         $provinces = DB::table('properties')->select('province')->distinct()->get();
@@ -80,10 +110,12 @@ class authmanager extends Controller
     function postproperty(Request $request)
     {
         $request->validate([
+            'message' => 'max:255',
             'description' => 'required',
             'province' => 'required',
             'address' => 'required',
             'price' => 'required',
+            'forrent' => 'required',
             'rooms_number' => 'required',
             'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg,wepb',
         ]);
@@ -104,8 +136,10 @@ class authmanager extends Controller
         $data['address'] = $request->address;
         $data['message'] = $request->message;
         $data['price'] = $request->price;
+        $data['forrent'] = $request->forrent;
         $data['rooms_number'] = $request->rooms_number;
         $data['propertyownerid'] = Auth::user()->id;
+        $data['propertytype']="Hotel";
         $data['images'] = json_encode($images);
         $property = DB::table('properties')->insert($data);
         if ($property) {
@@ -131,18 +165,24 @@ class authmanager extends Controller
     function registerpost(Request $request)
     {
         $request->validate([
+            'name' => 'required',
             'email' => 'required|email|unique:users',
             'username' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'phone_number' => 'required'
         ]);
         $data['username'] = $request->username;
+        $data['name'] = $request->name;
         $data['email'] = $request->email;
+        $data['phone_number'] = $request->phone_number;
+        $data['usertype'] = "client";
         $data['password'] = Hash::make($request->password);
+        // dd($data);
         $user = User::create($data);
         if (!$user) {
-            return redirect(route('register'))->with("error", "shdmfqslkjfqlfhlqkhfqmlfhd");
+            return redirect(route('register'))->with("error", "there is an error ");
         }
-        return redirect(route('login'))->with("success", "ya bagra");
+        return redirect(route('login'))->with("success", "Successful registration");
     }
     function logout()
     {

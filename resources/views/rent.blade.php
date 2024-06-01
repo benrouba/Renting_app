@@ -19,9 +19,49 @@
 </head>
 
 <body>
+
+    <div class="header_container">
+        <img class="header_img" src="{{ asset('images/hp-hero-desktop-xl.jpg') }}" alt="">
+        <div class="header_text_container">
+            <h1 class="header_text">The #1 site real estate <br> professionals trust*</h1>
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link text-white f16" href="{{ route('adminpage') }}">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white f16" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white f16" href="/buy">Buy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white f16" href="/add-property">Sell</a>
+                </li>
+                @if (!Auth::check())
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link text-white f16" href="{{ route('register') }}">Register</a>
+                    </li>
+                @endif
+                @if (!Auth::check())
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link text-white f16" href="{{ route('login') }}">Login</a>
+                    </li>
+                @endif
+                <li class="nav-item d-md-none">
+                    <a class="nav-link text-white f16" href="{{ route('add-property') }}">Add your place</a>
+                </li>
+                @if (Auth::check())
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link text-white f16" href="{{ route('logout') }}">Logout</a>
+                    </li>
+                @endif
+            </ul>
+        </div>
+    </div>
+
     <div class="container">
-        <div class="logo py-4">
-            <h1>easyrent</h1>
+        <div class="d-flex main_color py-4">
+            <h1>Easyrent</h1>
             <span class="material-symbols-outlined">
                 real_estate_agent
             </span>
@@ -79,7 +119,8 @@
                                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         @foreach (json_decode($item->images) as $key => $image)
-                                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"
+                                            <li data-target="#carouselExampleIndicators"
+                                                data-slide-to="{{ $key }}"
                                                 class="{{ $key == 0 ? 'active' : '' }}"></li>
                                         @endforeach
                                     </ol>
@@ -106,7 +147,7 @@
                                 <div class="mt-2">
                                     <b> {{ $item->address }}, {{ $item->province }}</b>
                                     <div class="">
-                                        <span class="">{{ $item->description }}</span>
+                                        <p class="mango">{{ $item->description }}</p>
                                     </div>
                                     <div class="mt-1">
                                         <span class="price"> {{ $item->price }} DZD</span>

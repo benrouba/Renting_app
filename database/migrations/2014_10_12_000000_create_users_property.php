@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('message');
             $table->unsignedBigInteger('propertyownerid');
             $table->foreign('propertyownerid')->references('id')->on('users');
+            // add  a boolean  varialble to make the difference if it is for rent or for sale
+            $table->boolean('forrent');
             $table->string('propertytype');
         });
     }
