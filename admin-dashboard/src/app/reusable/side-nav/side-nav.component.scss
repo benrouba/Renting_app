@@ -1,0 +1,50 @@
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  background-color: #ffffff;
+}
+
+.closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px !important;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  height: 100%
+}
+
+@media screen and (min-width: 992px) {
+  .position-md-unset {
+    position: unset !important;
+    width: unset !important
+  }
+
+  .overlay {
+    width: unset !important;
+    height: unset !important
+  }
+}
+
+.overlay {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  z-index: 998;
+  opacity: 0;
+  position: fixed
+}
+
+.overlay.active {
+  display: block;
+  z-index: 1 !important
+}

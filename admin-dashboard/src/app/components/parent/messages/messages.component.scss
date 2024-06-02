@@ -1,0 +1,15 @@
+.bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+@media (max-width:991.99px) {
+  .w-50 {
+    width: 100% !important;
+  }
+}
+
+.w-fit-content {
+  width: fit-content;
+}

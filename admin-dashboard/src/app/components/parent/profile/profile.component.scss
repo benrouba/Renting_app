@@ -1,0 +1,33 @@
+.coverImg {
+  height: 225px;
+  background-image: url(../../../../assets/images/backgrounds/Rectangle39897.svg);
+  border-radius: 12px 12px 0 0;
+  background-repeat: no-repeat;
+}
+
+.profileImg {
+  position: relative;
+  transform: translate(0%, 80%);
+
+}
+
+.coverImgContainer {
+  width: 146px;
+}
+
+.prodile_doc {
+  width: 56px;
+  height: 56px;
+  background-image: url(../../../../assets/images/icons/Avatar.png);
+  border-radius: 10px;
+  opacity: 1;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.label_photo {
+  background-color: #103F74;
+  color: white;
+  padding: 12px 24px;
+}

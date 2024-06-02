@@ -1,0 +1,58 @@
+<div class="overlay" (click)="closeNav()" id="overlay">
+</div>
+<div id="mySidenav" class="sidenav position-md-unset" [ngClass]="{'d-lg-none': !display}">
+  <ul class="navbar-nav flex-column w-100 poppinsRegular">
+    <div class="mb-2 d-lg-none">
+      <div class="d-flex px-3 align-items-end">
+        <button class="btn p-0 mr-3" (click)="closeNav()">
+          <img src="../../../assets/images/icons/Frame.svg" alt="">
+        </button>
+        <a [routerLink]="['/']">
+          <div class="d-flex poppinsMeduim deepBlue">
+            <h1 class="f14">Easyrent</h1>
+            <img src="../../../assets/images/icons/real_estate_agent.svg" alt="">
+          </div>
+        </a>
+      </div>
+      <li class="nav-item px-3">
+        <a class="nav-link deepBlue px-3  py-3" [routerLink]="['/profile']" routerLinkActive="router-link-active">
+          <img src="../../../assets/images/icons/Avatar.png" alt="" class="mr-2 avatar">
+          <span class="opaity_05">Edit My Profile</span>
+        </a>
+      </li>
+      <li class="nav-item px-3">
+        <a class="nav-link deepBlue px-3 py-3 d-flex align-items-center" [routerLink]="['/notification']"
+          routerLinkActive="router-link-active">
+          <img src="../../../assets/images/icons/Setting.svg" alt="" class="mr-2">
+          <span class="opaity_05 mr-2">Notifications</span>
+          <div class="badge text-white f12">2</div>
+        </a>
+      </li>
+      <li class="nav-item px-3">
+        <a class="nav-link deepBlue px-3 py-3 d-flex align-items-center" [routerLink]="['/notification']"
+          routerLinkActive="router-link-active">
+          <img src="../../../assets/images/icons/Setting.svg" alt="" class="mr-2">
+          <span class="opaity_05">Settings</span>
+        </a>
+      </li>
+    </div>
+    <li class="nav-item px-3 my-2">
+      <a class="nav-link deepBlue opaity_05 p-3" [routerLink]="['/clients']" routerLinkActive="router-link-active">
+        <img src="../../../assets/images/icons/3 User.svg" alt="" class="mr-2">
+        Clients
+      </a>
+    </li>
+    <li class="nav-item px-3 mb-2">
+      <a class="nav-link deepBlue opaity_05 p-3" [routerLink]="['/owners']" routerLinkActive="router-link-active">
+        <img src="../../../assets/images/icons/Chart.svg" alt="" class="mr-2">
+        Properties owners
+      </a>
+    </li>
+    <li class="nav-item px-3 mb-2">
+      <a class="nav-link deepBlue opaity_05 p-3" [routerLink]="['/properties']" routerLinkActive="router-link-active">
+        <img src="../../../assets/images/icons/Activity.svg" alt="" class="mr-2">
+        Properties
+      </a>
+    </li>
+  </ul>
+</div>

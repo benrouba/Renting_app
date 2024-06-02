@@ -1,0 +1,201 @@
+<div class="p-3 p-md-4 p-lg-5">
+  <div class="d-flex justify-content-between">
+    <span class="deepBlue f24 poppinsSemiBold">Properties List</span>
+    <a class="d-flex align-items-center custom_btn btn text-white blueBackground poppinsRegular f14 br_8 px-5" href="http://localhost:8000/add-property" >Add
+      Property</a>
+  </div>
+  <div class="tableContainer mt-4 p-3" *ngIf="properties">
+    <div class="table-responsive">
+      <table class="table table-borderless">
+        <thead>
+          <tr class="customTr">
+            <th>id</th>
+            <th>Address</th>
+            <th>Price</th>
+            <th>Province </th>
+            <th>Description </th>
+            <th>Owner Message </th>
+            <th>N of chambers </th>
+            <th>Type </th>
+            <th>Available </th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of properties">
+            <td class="poppinsRegular f14 black">{{user.id}}</td>
+            <td class="poppinsRegular f14 black">{{user.address}}</td>
+            <td class="poppinsRegular f14 black">{{user.price}}</td>
+            <td class="poppinsRegular f14 black">{{user.province}}</td>
+            <td class="poppinsRegular f14 black">{{user.description}}</td>
+            <td class="poppinsRegular f14 black">{{user.message}}</td>
+            <td class="poppinsRegular f14 black">{{user.rooms_number}}</td>
+            <td class="poppinsRegular f14 black">{{user.propertytype}}</td>
+            <td class="poppinsRegular f14 black">{{user.is_available?"Yes":"No"}}</td>
+            <td>
+              <button class="btn p-0 mr-2" (click)="editClient(user)">
+                <img src="../../../../assets/images/icons/Hide.svg" alt="">
+              </button>
+              <button class="btn p-0" (click)="showModal(user)">
+                <img src="../../../../assets/images/icons/Delete.svg" alt="">
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div *ngIf="properties?.total" class="d-flex justify-content-end mt-4">
+    <pagination [directionLinks]="true" [maxSize]=5 [totalItems]="properties.total" [itemsPerPage]="properties.limit"
+      (pageChanged)="paginate($event)" [(ngModel)]="currentPage" class="pagination poppinsRegular"
+      previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+    </pagination>
+  </div>
+</div>
+<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">Delete Client</h4>
+        <button type="button" class="close pull-right btn-close" aria-label="Close" (click)="childModal.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this client?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="deleteClient()"> Yes</button>
+        <button class="btn" (click)="childModal.hide()">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">{{edit?"Edit ":"Add"}} Property</h4>
+        <button type="button" class="close pull-right btn-close" aria-label="Close" (click)="editModal.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="mt-lg-5 mt-3" [formGroup]="propertyForm">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="address" class="poppinsSemiBold f14 deepBlue">Address</label>
+              <input type="text" class="form-control f14 poppinsRegular black" id="address" formControlName="address"
+                [ngClass]="{'is-invalid': submit &&f['address'].errors}" placeholder="Enter Your name here">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputState" class="poppinsSemiBold f14 deepBlue">Province</label>
+              <select id="province" class="form-control f14 poppinsRegular black" name="province"
+                formControlName="province" [ngClass]="{'is-invalid': submit &&f['province'].errors}">
+                <option selected>Choose...</option>
+                <option value="Adrar" name="Adrar">Adrar</option>
+                <option value="Chlef" name="Chlef">Chlef</option>
+                <option value="Laghouat" name="Laghouat">Laghouat</option>
+                <option value="Oum El Bouaghi" name="Oum El Bouaghi">Oum El Bouaghi</option>
+                <option value="Batna" name="Batna">Batna</option>
+                <option value="Béjaïa" name="Béjaïa">Béjaïa</option>
+                <option value="Biskra" name="Biskra">Biskra</option>
+                <option value="Béchar" name="Béchar">Béchar</option>
+                <option value="Blida" name="Blida">Blida</option>
+                <option value="Bouira" name="Bouira">Bouira</option>
+                <option value="Tamanrasset" name="Tamanrasset">Tamanrasset</option>
+                <option value="Tébessa" name="Tébessa">Tébessa</option>
+                <option value="Tlemcen" name="Tlemcen">Tlemcen</option>
+                <option value="Tiaret" name="Tiaret">Tiaret</option>
+                <option value="Tizi Ouzou" name="Tizi Ouzou">Tizi Ouzou</option>
+                <option value="Alger" name="Alger">Alger</option>
+                <option value="Djelfa" name="Djelfa">Djelfa</option>
+                <option value="Jijel" name="Jijel">Jijel</option>
+                <option value="Sétif" name="Sétif">Sétif</option>
+                <option value="Saïda" name="Saïda">Saïda</option>
+                <option value="Skikda" name="Skikda">Skikda</option>
+                <option value="Sidi Bel Abbès" name="Sidi Bel Abbès">Sidi Bel Abbès</option>
+                <option value="Annaba" name="Annaba">Annaba</option>
+                <option value="Guelma" name="Guelma">Guelma</option>
+                <option value="Constantine" name="Constantine">Constantine</option>
+                <option value="Médéa" name="Médéa">Médéa</option>
+                <option value="Mostaganem" name="Mostaganem">Mostaganem</option>
+                <option value="M'Sila" name="M'Sila">M'Sila</option>
+                <option value="Mascara" name="Mascara">Mascara</option>
+                <option value="Ouargla" name="Ouargla">Ouargla</option>
+                <option value="Oran" name="Oran">Oran</option>
+                <option value="El Bayadh" name="El Bayadh">El Bayadh</option>
+                <option value="Illizi" name="Illizi">Illizi</option>
+                <option value="Bordj Bou Arréridj" name="Bordj Bou Arréridj">Bordj Bou Arréridj</option>
+                <option value="Boumerdès" name="Boumerdès">Boumerdès</option>
+                <option value="El Tarf" name="El Tarf">El Tarf</option>
+                <option value="Tindouf" name="Tindouf">Tindouf</option>
+                <option value="Tissemsilt" name="Tissemsilt">Tissemsilt</option>
+                <option value="El Oued" name="El Oued">El Oued</option>
+                <option value="Khenchela" name="Khenchela">Khenchela</option>
+                <option value="Souk Ahras" name="Souk Ahras">Souk Ahras</option>
+                <option value="Tipaza" name="Tipaza">Tipaza</option>
+                <option value="Mila" name="Mila">Mila</option>
+                <option value="Aïn Defla" name="Aïn Defla">Aïn Defla</option>
+                <option value="Naâma" name="Naâma">Naâma</option>
+                <option value="Aïn Témouchent" name="Aïn Témouchent">Aïn Témouchent</option>
+                <option value="Ghardaïa" name="Ghardaïa">Ghardaïa</option>
+                <option value="Relizane" name="Relizane">Relizane</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="description" class="poppinsSemiBold f14 deepBlue">Description</label>
+              <textarea class="form-control f14 poppinsRegular black" id="exampleFormControlTextarea1"
+                formControlName="description" [ngClass]="{'is-invalid': submit &&f['description'].errors}" rows="4"
+                placeholder="Enter your description here "></textarea>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="message" class="poppinsSemiBold f14 deepBlue">Message du Client</label>
+              <textarea type="text" class="form-control f14 poppinsRegular black" id="message" formControlName="message"
+                [ngClass]="{'is-invalid': submit &&f['message'].errors}" placeholder="Enter client's message here"
+                rows="4"></textarea>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="price" class="poppinsSemiBold f14 deepBlue">Price</label>
+              <input type="number" class="form-control f14 poppinsRegular black" id="price" formControlName="price"
+                [ngClass]="{'is-invalid': submit &&f['price'].errors}" placeholder="Enter Your price here">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="rooms_number" class="poppinsSemiBold f14 deepBlue">Rooms Number</label>
+              <input type="number" class="form-control f14 poppinsRegular black" id="rooms_number"
+                formControlName="rooms_number" [ngClass]="{'is-invalid': submit &&f['rooms_number'].errors}"
+                placeholder="Enter Your rooms number here">
+            </div>
+          </div>
+          <div class="form-row align-items-center">
+            <div class="form-group col-md-6">
+              <label for="inputState" class="poppinsSemiBold f14 deepBlue">Rent/Sale</label>
+              <select id="forrent" class="form-control f14 poppinsRegular black" name="forrent"
+                formControlName="forrent" [ngClass]="{'is-invalid': submit &&f['forrent'].errors}">
+                <option value=1 [ngValue]="1">Rent</option>
+                <option value=0 [ngValue]="0">Sale</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1" formControlName="is_available">
+                <label class="custom-control-label poppinsSemiBold f14 deepBlue" for="customSwitch1">Is
+                  Available</label>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="poppinsSemiBold btn blueBack text-white px-4" (click)="manageClient()">Save</button>
+        <button class="poppinsSemiBold btn  black px-4" (click)="editModal.hide()">Cancel</button>
+
+      </div>
+    </div>
+  </div>
+</div>

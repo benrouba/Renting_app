@@ -1,0 +1,52 @@
+<div class="container d-flex justify-content-center align-items-center h-100">
+  <div class="row no-gutters h-100">
+    <div class="col-lg-6 p-lg-5 p-2 d-flex justify-content-lg-center flex-column">
+      <div class="d-flex align-items-center mb-3">
+        <span class="deepBlue f32 poppinsSemiBold mr-lg-4 mr-2">Sing up your account</span>
+        <img src="../../../assets/images/icons//image 296.svg" alt="" class="icons">
+      </div>
+      <div>
+        <span class="greyColor f14 poppinsRegular">Let’s Enter your data to continue use healthy 24 services</span>
+      </div>
+      <form class="mt-lg-5 mt-3">
+        <div class="form-group">
+          <label for="name" class="poppinsSemiBold f14 deepBlue">Fullname</label>
+          <input type="text" class="form-control f14" id="name" placeholder="Enter Your name here">
+        </div>
+        <div class="form-group">
+          <label for="email" class="poppinsSemiBold f14 deepBlue">Email</label>
+          <input type="email" class="form-control f14" id="email" placeholder="Enter Your email here">
+        </div>
+        <div class="form-group">
+          <label for="password" class="poppinsSemiBold f14 deepBlue">Password</label>
+          <input type="password" class="form-control f14" id="password" placeholder="Enter Your password here">
+        </div>
+        <div class="form-group form-check align-items-center d-flex">
+          <input type="checkbox" class="form-check-input" id="checkbox">
+          <label class="form-check-label  f12" for="checkbox">by sign up to healthy 24 you agree all
+            <a href="" class="poppinsSemiBold deepBlue">term</a> and
+            <a href="" class="poppinsSemiBold deepBlue">condition</a>
+          </label>
+        </div>
+        <div class="mt-5">
+          <button class="custom_btn signUp btn text-white blueBack poppinsRegular w-100 f14 br_8">Sign Up</button>
+          <div class="my-4 text-center">
+            <span class="poppinsRegular f14 blackColor">Or</span>
+          </div>
+          <button class="custom_btn signUp btn black border_1 poppinsRegular w-100 f14 br_8 mb-3">Sign Up with
+            google</button>
+          <button class="custom_btn signUp btn black border_1 poppinsRegular w-100 f14 br_8 mb-4">Sign Up with
+            facebook</button>
+          <div class="text-center f12">
+            <span class="black poppinsRegular"> You Already have account ? </span><a [routerLink]="['/login']"
+              class="black poppinsSemiBold">Sign in</a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6 img_back d-none d-lg-block">
+      <app-login-sign-up></app-login-sign-up>
+    </div>
+
+  </div>
+</div>

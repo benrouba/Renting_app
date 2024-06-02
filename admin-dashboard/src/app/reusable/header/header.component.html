@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-between p-3 border_2">
+  <button class="btn p-0 d-lg-none" (click)="openNav()">
+    <img src="../../../assets/images/icons/Frame.svg" alt="">
+  </button>
+  <span class="poppinsRegular f16 deepBlue d-lg-none">{{title}}</span>
+  <a [routerLink]="['/']" class="d-none d-lg-block">
+    <div class="d-flex poppinsMeduim deepBlue">
+      <h1>Easyrent</h1>
+      <img src="../../../assets/images/icons/real_estate_agent.svg" alt="">
+    </div>
+  </a>
+  <div class="d-flex align-items-center">
+    <button class="btn p-0 mr-lg-4">
+      <img src="../../../assets/images/icons/Notification.svg" alt="">
+    </button>
+    <button class="btn p-0 mr-lg-4 d-lg-block d-none">
+      <img src="../../../assets/images/icons/Setting.svg" alt="">
+    </button>
+    <a [routerLink]="['/profile']" routerLinkActive="router-link-active">
+      <img class="d-none d-lg-block" src="../../../assets/images/icons/Avatar.png" alt="">
+    </a>
+  </div>
+</div>

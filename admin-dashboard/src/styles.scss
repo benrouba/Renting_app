@@ -1,0 +1,527 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+// ****************************************************************************Font-family***************************************************************************************
+@font-face {
+  font-family: poppinsRegular;
+  src: url(assets/fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url(assets/fonts/Poppins-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: poppinsMeduim;
+  src: url(assets/fonts/Poppins-Medium.ttf);
+}
+
+.poppinsRegular {
+  font-family: poppinsRegular;
+}
+
+.poppinsMeduim {
+  font-family: poppinsMeduim;
+}
+
+.poppinsSemiBold {
+  font-family: poppinsSemiBold;
+}
+
+// **************************************************************************** variavles ***************************************************************************************
+$deepBlue: #073937 ;
+$blue: #073937 ;
+$blue_2: #2B7BAE;
+$blue_3: #1A71FF;
+$blue_4: #3EA2D0;
+$grey: #848FAC;
+$grey_2: #C5D0E6;
+$grey_3: #EFF3FA;
+$grey_4: #FAFAFA;
+$grey_5: #A9B4CD;
+$grey_6: #DFE8F6;
+$black_2: #2B2B36;
+$black: #000000;
+$azure: #00B0F0;
+$lightBlue: #65A8FB;
+$opacity_05: 0.5;
+$border: 1px solid $grey_2;
+.custom-control-input:checked~.custom-control-label::before{
+  background-color: $blue !important;
+  border-color: $blue !important;
+}
+// ****************************************************************************colors***************************************************************************************
+.deepBlue {
+  color: $deepBlue !important;
+}
+
+.blackColor {
+  color: $black_2;
+}
+
+.greyBack_6 {
+  background-color: $grey_6;
+}
+
+.greyBack_4 {
+  background-color: $grey_4 ;
+}
+
+.black {
+  color: $black;
+}
+
+.greyColor {
+  color: $grey;
+}
+
+.grey_2 {
+  color: $grey_2;
+}
+
+.blue_2 {
+  color: $blue_2 !important;
+}
+
+.blue_3 {
+  color: $blue_3 !important;
+}
+
+.blue_4 {
+  color: $blue_4 !important;
+}
+
+// ****************************************************************************background  ***************************************************************************************
+.blueBackground {
+  background-color: $blue;
+}
+
+.blueBack {
+  background-color: $deepBlue;
+}
+
+.grey_kBack {
+  background-color: $grey_5;
+}
+
+.greyBack {
+  background-color: $grey_3;
+}
+
+.img_back {
+  background-image: url(assets/images/backgrounds/Maskgroup.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: $azure;
+  overflow: hidden;
+}
+
+// ****************************************************************************borders***************************************************************************************
+.border_1 {
+  border: $border !important;
+}
+
+.border_2 {
+  border-bottom: $border !important;
+}
+
+.border_3 {
+  border-right: $border !important;
+}
+
+.border_4 {
+  border-left: 4px solid #12BDB2 !important;
+  border-radius: 6px !important;
+}
+
+.border_5 {
+  border-left: 4px solid #8239BC !important;
+  border-radius: 4px !important;
+}
+
+.border_6 {
+  border-left: 4px solid #FBB500 !important;
+  border-radius: 4px !important;
+
+}
+
+// ****************************************************************************Border radius***************************************************************************************
+.br12 {
+  border-radius: 12px;
+}
+
+.br10 {
+  border-radius: 10px;
+}
+
+.br8 {
+  border-radius: 8px !important;
+}
+
+.br012 {
+  border-radius: 0px 12px 12px 12px;
+}
+
+.br120 {
+  border-radius: 12px 12px 0px 12px;
+}
+
+.br50 {
+  border-radius: 50%;
+}
+
+// ****************************************************************************Font-size***************************************************************************************
+.f32 {
+  font-size: 32px;
+}
+
+.f36 {
+  font-size: 36px;
+}
+
+.f20 {
+  font-size: 20px;
+}
+
+.f24 {
+  font-size: 24px;
+}
+
+.f14 {
+  font-size: 14px;
+}
+
+.f12 {
+  font-size: 12px;
+}
+.f18 {
+  font-size: 18px;
+}
+
+// ****************************************************************************Buttons***************************************************************************************
+.custom_btn {
+  height: 48px !important;
+  border-radius: 8px !important;
+}
+
+.sendBtn {
+  background-color: $blue;
+  width: 56px;
+  height: 56px;
+
+}
+
+// ****************************************************************************Common Css ***************************************************************************************
+a {
+  text-decoration: none !important;
+}
+
+// ****************************************************************************images ***************************************************************************************
+.img-1 {
+  z-index: 10000;
+}
+
+.img-2 {
+  transform: translate(71%, 50%);
+  z-index: 1;
+}
+
+.userImg {
+  width: 56px;
+  height: 56px;
+  background-color: #DFE8F6;
+  border-radius: 50%;
+}
+
+.SmallUserImg {
+  width: 40px;
+  height: 40px;
+  background-color: #DFE8F6;
+  border-radius: 50%;
+}
+
+// ****************************************************************************Input***************************************************************************************
+::placeholder {
+  color: $grey_2;
+}
+
+.form-control:not(textarea) {
+  @extend .custom_btn;
+  @extend .border_1;
+}
+
+// ****************************************************************************Customisation***************************************************************************************
+.otp-input {
+  @extend .border_1;
+  width: 54px !important;
+  height: 54px !important;
+  border-radius: 8px !important;
+  color: $deepBlue !important;
+  font-family: poppinsRegular !important;
+  margin-right: 20px !important;
+
+  &:focus-visible {
+    border: 1px solid $lightBlue !important;
+    outline: none;
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+// ****************************************************************************opacity  ***************************************************************************************
+.opaity_05 {
+  opacity: $opacity_05;
+}
+
+// ****************************************************************************link active  ***************************************************************************************
+
+.router-link-active {
+  opacity: 1 !important;
+  background: #EFF3FA;
+  border-radius: 5px;
+}
+
+// ****************************************************************************Tables ***************************************************************************************
+.tableContainer {
+  border: $border;
+  border-radius: 12px;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.customTr {
+  font-family: poppinsRegular;
+  font-size: 14px;
+  color: $deepBlue;
+  background: #EFF3FA;
+  border-radius: 12px
+}
+
+td {
+  vertical-align: middle !important;
+}
+
+tr:first-child th:first-child {
+  border-top-left-radius: 10px;
+}
+
+tr:first-child th:last-child {
+  border-top-right-radius: 10px;
+}
+
+tr:last-child th:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+tr:last-child th:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+// ****************************************************************************Media queries***************************************************************************************
+@media (min-width:1440px) {
+  .container {
+    max-width: 1440px !important;
+  }
+}
+
+@media (max-width:991.99px) {
+  .f32 {
+    font-size: 16px;
+  }
+
+  .customBorder {
+    border: none !important;
+  }
+
+  .icons {
+    width: 24px;
+    height: 24px;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .logo {
+    max-width: 120px;
+  }
+
+  .sidenav {
+    box-shadow: 0px 38px 81px rgba(0, 0, 0, 0.25);
+  }
+
+  .coverImg {
+    height: 135px !important;
+    background-size: cover;
+  }
+}
+
+@media screen and (max-width: 1199.98px) {
+  .otp-input {
+    width: 45px !important;
+    height: 45px !important;
+    margin-right: 8px !important;
+  }
+}
+
+// ****************************************************************************Paginator***************************************************************************************
+
+.pagination .page-item.active .page-link {
+  background: #EFF3FA;
+  border-radius: 8px;
+  opacity: 1;
+  color: $deepBlue
+}
+
+.pagination .pagination-page .page-link,
+.pagination .pagination-next .page-link,
+.pagination .pagination-prev .page-link {
+  margin-right: .5rem;
+  // color: #A9B4CD;
+  border: unset !important;
+  font-size: 16px;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+.pagination .pagination-next .page-link,
+.pagination .pagination-prev .page-link {
+  color: $deepBlue
+}
+
+.pagination .pagination-page .page-link {
+  color: #A9B4CD;
+}
+
+// ****************************************************************************styling Calendar***************************************************************************************
+.cssClass {
+  color: $deepBlue !important;
+  font-family: "poppinsRegular";
+}
+
+bs-datepicker-inline-container,
+.bs-datepicker,
+.bs-datepicker-container,
+.bs-calendar-container,
+bs-days-calendar-view,
+.bs-media-container {
+  width: 100% !important;
+}
+
+.bs-datepicker-container {
+  padding: 0 !important;
+}
+
+.bs-datepicker-body table td {
+  @extend .cssClass;
+  font-size: 16px !important;
+
+  & span.selected {
+    background-color: $blue !important;
+    color: #ffff !important;
+  }
+}
+
+.bs-datepicker-body table th {
+  @extend .cssClass;
+  font-size: 11px !important;
+}
+
+.bs-datepicker-head button.current,
+.bs-datepicker-head button.next,
+.bs-datepicker-head button.previous {
+  @extend .cssClass;
+  font-size: 12px;
+}
+
+.theme-green .bs-datepicker-head {
+  @extend .cssClass;
+  font-size: 12px;
+  background-color: #fff;
+}
+
+.bs-datepicker-body {
+  border: unset !important;
+  border-top: 1px solid $grey_2 !important;
+}
+
+.bs-datepicker {
+  box-shadow: unset !important;
+}
+
+// ****************************************************************************styling FullCalendar***************************************************************************************
+
+full-calendar h2 {
+  font-family: 'poppinsRegular';
+  text-transform: capitalize !important;
+}
+
+full-calendar .fc-col-header-cell-cushion {
+  font-family: 'poppinsRegular';
+  color: $deepBlue;
+  font-size: 14px !important;
+}
+
+full-calendar .fc-scrollgrid-shrink-cushion {
+  font-family: 'poppinsRegular';
+}
+
+full-calendar {
+  background-color: #fff !important;
+}
+
+full-calendar .fc-button:focus {
+  box-shadow: unset !important;
+}
+
+full-calendar .fc-event-title {
+  font-family: 'poppinsRegular' !important;
+}
+
+full-calendar .fc-daygrid-day-number {
+  font-family: 'poppinsRegular';
+}
+
+full-calendar tbody>tr:hover {
+  -webkit-animation: unset !important;
+  animation: unset !important;
+}
+
+.fc-theme-standard .fc-scrollgrid {
+  border: 1px solid transparent !important;
+}
+
+tr .fc-day-today {
+  background: #FFF !important;
+}
+
+.fc .fc-button-primary,
+.fc .fc-button-primary:hover {
+  background-color: #fff !important;
+  color: $deepBlue !important;
+}
+
+.fc .fc-button-group>.fc-button {
+  @extend .border_1
+}
+
+.fc .fc-button-primary:disabled,
+.fc .fc-button:not(:disabled) {
+  border: unset !important;
+  font-family: 'poppinsSemiBold' !important;
+  font-size: 18px !important;
+  text-transform: capitalize
+}

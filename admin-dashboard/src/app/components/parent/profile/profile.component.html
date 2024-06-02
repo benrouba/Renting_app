@@ -1,0 +1,40 @@
+<app-header></app-header>
+<app-side-nav [display]="false"></app-side-nav>
+<div class="py-2 py-md-3 py-lg-4">
+  <div class="container br12 border_1 customBorder  p-3 p-md-4">
+    <span class="deepBlue f24 poppinsSemiBold">Edit profile</span>
+    <p class="f14 greyColor poppinsRegular pt-3">Your profile will be displayed publicly so be careful what you share
+    <p class="f16 deepBlue poppinsSemiBold">Cover</p>
+    <div class="coverImg"></div>
+    <div class="pt-3">
+      <p class="f16 deepBlue poppinsSemiBold">Profile picture</p>
+      <div class="d-flex align-items-center ">
+        <div class="prodile_doc" [ngStyle]="{'background-image':imgUrl  ? 'url('+imgUrl+')' : '' }"></div>
+        <div class="ml-3">
+          <input type="file" id="actual-btn" (change)="showPreviewImage($event)" hidden />
+          <label for="actual-btn" class="label_photo poppinsRegular f12 br8 mb-0">Change photo</label>
+        </div>
+        <button class="btn deepBlue f12 poppinsRegular ml-3">Remove</button>
+      </div>
+      <form class="mt-lg-5 mt-3">
+        <div class="form-group">
+          <label for="name" class="poppinsSemiBold f14 deepBlue">Fullname</label>
+          <input type="text" class="form-control f14" id="name" placeholder="Inpute your Fullname here">
+        </div>
+        <div class="form-group">
+          <label for="Speciality" class="poppinsSemiBold f14 deepBlue">Speciality</label>
+          <input type="Speciality" class="form-control f14" id="Speciality" placeholder="Inpute your speciality here">
+        </div>
+        <div class="form-group">
+          <label for="profile" class="poppinsSemiBold f14 deepBlue">Profile Desciption</label>
+          <textarea class="form-control f14 f8 border_1" placeholder="Inpute your Profile Desciption here" id="profile"
+            rows="4"></textarea>
+        </div>
+        <div class="pt-4 d-flex justify-content-end">
+          <button class="btn deepBlue f12 poppinsRegular ml-3">Cancel</button>
+          <button class="custom_btn signUp btn text-white poppinsRegular f12 blueBackground br_8">Save Changes</button>
+        </div>
+      </form>
+    </div>
+
+  </div>

@@ -1,0 +1,53 @@
+<div class="p-3 p-md-4 p-lg-5">
+  <div>
+    <span class="deepBlue f24 poppinsSemiBold">Medical History</span>
+  </div>
+  <div class="tableContainer mt-4 p-3" *ngIf="users">
+    <div class="table-responsive">
+      <table class="table table-borderless">
+        <thead>
+          <tr class="customTr">
+            <th>Patient</th>
+            <th>Appointment</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users.users">
+            <td class="poppinsSemiBold f14 deepBlue">
+              <div class="d-flex align-items-center">
+                <img src="{{user.image}}" alt="" class="prfile_img mr-2">
+                {{user.firstName}} {{user.lastName}}
+              </div>
+            </td>
+            <td class="poppinsRegular f14 deepBlue">Monthly Medical Check-up</td>
+            <td class="poppinsRegular f14 deepBlue">Dec 22,2023</td>
+            <td class="poppinsRegular f14 deepBlue">12:00 Pm</td>
+            <td class="poppinsRegular f12  text-center">
+              <div class="status py-2">
+                Success
+              </div>
+            </td>
+            <td>
+              <button class="btn p-0 mr-2">
+                <img src="../../../../assets/images/icons/Hide.svg" alt="">
+              </button>
+              <button class="btn p-0">
+                <img src="../../../../assets/images/icons/Delete.svg" alt="">
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div *ngIf="users?.total" class="d-flex justify-content-end mt-4">
+    <pagination [directionLinks]="true" [maxSize]=5 [totalItems]="users.total" [itemsPerPage]="users.limit"
+      (pageChanged)="paginate($event)" [(ngModel)]="currentPage" class="pagination poppinsRegular"
+      previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+    </pagination>
+  </div>
+</div>

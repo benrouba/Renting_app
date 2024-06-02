@@ -1,0 +1,154 @@
+<div class="p-3 p-md-4 p-lg-5">
+  <div class="row" *ngIf="patient">
+    <div class="col-lg-4 col-xl-3">
+      <div class="patientCart mb-4">
+        <div>
+          <div class="border_1 p-3 mb-3 br8 w-100">
+            <div class="text-center">
+              <img src="{{patient.image}}" alt="" class="patientProfile mr-2">
+              <div class="poppinsSemiBold f18 deepBlue pt-3"> {{patient.firstName}} {{patient.lastName}} </div>
+              <div class="pt-2">
+                <span class="greyColor f16 poppinsRegular mr-2">Patient ID</span>
+                <span class="deepBlue f16 poppinsRegular">{{patient.id}}</span>
+              </div>
+              <p class="greyColor poppinsRegular f12 pt-2">
+                {{patient.address.address}}, {{patient.address.city}}, {{patient.address.state}}, USA</p>
+            </div>
+            <div class="d-flex justify-content-between flex-wrap">
+              <div class="text-center">
+                <span class="deepBlue f16 poppinsRegular mr-2 d-block">15</span>
+                <span class="deepBlue f16 poppinsRegular mr-2 d-block">Appointment</span>
+              </div>
+              <div class="text-center">
+                <span class="deepBlue f16 poppinsRegular mr-2 d-block">12</span>
+                <span class="deepBlue f16 poppinsRegular mr-2 d-block">Completed</span>
+              </div>
+            </div>
+            <button class="custom_btn signUp btn text-white blueBackground poppinsRegular w-100 f14 br_8 mt-4"
+              [routerLink]="['/messages']" routerLinkActive="router-link-active">Message patient</button>
+          </div>
+        </div>
+      </div>
+      <div class="patientCart">
+        <div>
+          <div class="border_1 p-3 mb-3 br8 w-100">
+            <div class="d-flex justify-content-between mb-3">
+              <span class="greyColor f14 poppinsRegular">Weight:</span>
+              <span class="deepBlue f14 poppinsRegular">165lb</span>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+              <span class="greyColor f14 poppinsRegular">Height:</span>
+              <span class="deepBlue f14 poppinsRegular">1,80 m</span>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+              <span class="greyColor f14 poppinsRegular">Blood Type:</span>
+              <span class="deepBlue f14 poppinsRegular">O- (Negative)</span>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+              <span class="greyColor f14 poppinsRegular">Blood Glucose:</span>
+              <span class="deepBlue f14 poppinsRegular">92mg/dL</span>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+              <span class="greyColor f14 poppinsRegular">Blood Pressure:</span>
+              <span class="deepBlue f14 poppinsRegular">120/80mmHg</span>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+              <span class="greyColor f14 poppinsRegular">Disease:</span>
+              <span class="deepBlue f14 poppinsRegular">Diabetes</span>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+              <span class="greyColor f14 poppinsRegular">Alergies:</span>
+              <span class="deepBlue f14 poppinsRegular">Peanut</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 col-xl-9">
+      <div class="border_1 p-3 br8">
+        <span class="deepBlue f18 poppinsRegular">Past Notes Appointment</span>
+        <div>
+          <div>
+            <ul class="sessions">
+              <li>
+                <span class="poppinsRegular f16 deepBlue">March 22, 2023</span>
+                <div class="p-3 mt-3 greyBack_4 br8">
+                  <span class="poppinsRegular f16 deepBlue">Diabetes Control Appointment</span>
+                  <p class="greyColor f14 poppinsMeduim pt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed
+                    do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                  <div class="flex-column d-flex">
+                    <div class="d-flex mb-3">
+                      <div class="table-cell poppinsRegular f14 greyColor">Treatment</div>
+                      <div class="table-cell poppinsRegular f14 greyColor">Duration</div>
+                      <div class="table-cell poppinsRegular f14 greyColor">Document</div>
+                    </div>
+                    <div class="d-flex">
+                      <div class="table-cell poppinsRegular f14 deepBlue">Check-up</div>
+                      <div class="table-cell poppinsRegular f14 deepBlue">3 months</div>
+                      <div class="table-cell poppinsRegular f14 "> <a href="" class="blue_2" download>
+                          Check-up-result.pdf</a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <span class="poppinsRegular f16 deepBlue">Jun 22, 2023</span>
+                <div class="p-3 mt-3 greyBack_4 br8">
+                  <span class="poppinsRegular f16 deepBlue">X-ray Scanning bones</span>
+                  <p class="greyColor f14 poppinsMeduim pt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed
+                    do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                  <div class="flex-column d-flex">
+                    <div class="d-flex mb-3">
+                      <div class="table-cell poppinsRegular f14 greyColor">Treatment</div>
+                      <div class="table-cell poppinsRegular f14 greyColor">Duration</div>
+                      <div class="table-cell poppinsRegular f14 greyColor">Document</div>
+                    </div>
+                    <div class="d-flex">
+                      <div class="table-cell poppinsRegular f14 deepBlue">Check-up</div>
+                      <div class="table-cell poppinsRegular f14 deepBlue">3 months</div>
+                      <div class="table-cell poppinsRegular f14 "> <a href="" class="blue_2" download>
+                          X-ray-scan.pdf</a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <span class="poppinsRegular f16 deepBlue">Sep 22, 2023</span>
+                <div class="p-3 mt-3 greyBack_4 br8">
+                  <span class="poppinsRegular f16 deepBlue">Diabtes Consiltation</span>
+                  <p class="greyColor f14 poppinsMeduim pt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed
+                    do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                  <div class="flex-column d-flex">
+                    <div class="d-flex mb-3">
+                      <div class="table-cell poppinsRegular f14 greyColor">Treatment</div>
+                      <div class="table-cell poppinsRegular f14 greyColor">Duration</div>
+                      <div class="table-cell poppinsRegular f14 greyColor">Document</div>
+                    </div>
+                    <div class="d-flex">
+                      <div class="table-cell poppinsRegular f14 deepBlue">Check-up</div>
+                      <div class="table-cell poppinsRegular f14 deepBlue">3 months</div>
+                      <div class="table-cell poppinsRegular f14 "> <a href="" class="blue_2" download>
+                          Check-up-result.pdf</a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

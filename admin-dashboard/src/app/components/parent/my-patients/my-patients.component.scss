@@ -1,0 +1,16 @@
+.custmBtn {
+  height: 48px;
+}
+
+@media (max-width:991.99px) {
+  .custmBtn {
+    width: 48px;
+  }
+}
+
+.patientProfile {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #EFF3FA;
+}

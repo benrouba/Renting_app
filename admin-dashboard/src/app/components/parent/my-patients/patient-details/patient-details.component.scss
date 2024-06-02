@@ -1,0 +1,44 @@
+.patientProfile {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #EFF3FA;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+}
+
+
+
+.sessions {
+  margin-top: 2rem;
+  border-radius: 12px;
+  position: relative;
+}
+
+li {
+  padding-bottom: 1.5rem;
+  border-left: 1px dashed #103F74;
+  position: relative;
+  padding-left: 20px;
+  margin-left: 10px;
+
+  &:before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border: 4px solid #103F74;
+    border-radius: 50%;
+    position: absolute;
+    left: -8px;
+    top: 0px;
+  }
+}
+
+.table-cell {
+  flex-basis: 50%;
+}

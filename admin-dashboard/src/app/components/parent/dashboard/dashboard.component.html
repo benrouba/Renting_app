@@ -1,0 +1,83 @@
+<div class="p-3 p-md-4 p-lg-5">
+  <div class="row">
+    <div class="col-md-6 col-lg-6 col-xl-7">
+      <div class="pb-4">
+        <span class="deepBlue f24 poppinsSemiBold">Welcome back Dr. Taylor!</span>
+      </div>
+      <div class="border_1 br8 customBorder p-3">
+        <span class="deepBlue f20 poppinsSemiBold">Visits This month</span>
+        <canvas baseChart style="width: 100%;height: 300px" class="mt-3" [datasets]=data [labels]=labels
+          [legend]="barChartLegend" [type]="'bar'" [options]="options">
+        </canvas>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-5">
+      <div class="border_1 p-3 br8">
+        <div class="mb-3 d-flex justify-content-between">
+          <span class="deepBlue f20 poppinsSemiBold">Calendar</span>
+          <button class="btn p-0">
+            <img src="../../../../assets/images/icons/Icons.svg" alt="">
+          </button>
+        </div>
+        <bs-datepicker-inline [bsConfig]="{ showWeekNumbers: false }" [bsValue]="bsInlineValue"></bs-datepicker-inline>
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="deepBlue f20 poppinsSemiBold">Upcoming Upcoming Upcoming </span>
+          <a href="" class="blue_3 f12 poppinsSemiBold">
+            View all
+          </a>
+        </div>
+        <div class="d-flex align-items-center mt-3 meet p-3 br10">
+          <div class="M text-white poppinsSemiBold f16 mr-3">
+            M
+          </div>
+          <div>
+            <span class="deepBlue f16 poppinsRegular d-block">Montly doctor’s meet </span>
+            <span class="f12 poppinsRegular">8 April, 2021 | 04:00 PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="users" class="mt-4">
+    <div class="table-responsive">
+      <table class="table table-borderless">
+        <thead>
+          <tr class="customTr">
+            <th>Patient</th>
+            <th>Appointment</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users.users">
+            <td class="poppinsSemiBold f14 deepBlue">
+              <div class="d-flex align-items-center">
+                <img src="{{user.image}}" alt="" class="prfile_img mr-2">
+                {{user.firstName}} {{user.lastName}}
+              </div>
+            </td>
+            <td class="poppinsRegular f14 deepBlue">Monthly Medical Check-up</td>
+            <td class="poppinsRegular f14 deepBlue">Dec 22,2023</td>
+            <td class="poppinsRegular f14 deepBlue">12:00 Pm</td>
+            <td class="poppinsRegular f12  text-center">
+              <div class="status py-2">
+                Success
+              </div>
+            </td>
+            <td>
+              <button class="btn p-0 mr-2">
+                <img src="../../../../assets/images/icons/Hide.svg" alt="">
+              </button>
+              <button class="btn p-0">
+                <img src="../../../../assets/images/icons/Delete.svg" alt="">
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

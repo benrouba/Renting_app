@@ -1,0 +1,31 @@
+<div class="container d-flex justify-content-center align-items-center h-100">
+  <div class="row no-gutters h-100 w-100">
+    <div class="col-lg-6 p-lg-5 p-2 d-flex justify-content-lg-center flex-column">
+      <div class="d-flex align-items-center mb-3">
+        <span class="deepBlue f32 poppinsSemiBold mr-lg-4 mr-2">OTP Verification</span>
+        <img src="../../../assets/images/icons/image 1006.svg" alt="" class="icons">
+      </div>
+      <div>
+        <p class="f14"><span class="poppinsRegular greyColor">Our team already sent you an email in your inbox </span>
+          <span class="poppinsSemiBold deepBlue">seddikwalid@gamil.com</span> <span class="poppinsRegular greyColor">to
+            Access back your
+            account</span>
+        </p>
+      </div>
+      <form class="mt-lg-5 mt-3">
+        <div class="form-group d-flex justify-content-center ">
+          <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:6}"></ng-otp-input>
+        </div>
+        <button class="signUp btn text-white blueBack poppinsRegular w-100 f14 br_8 custom_btn">Continue</button>
+        <div class="text-center f12 mt-lg-4 mt-3">
+          <span class="black poppinsRegular"> *didn’t receive verificatin code ? </span><a href=""
+            class="black poppinsSemiBold">Resend</a>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-6 img_back d-none d-lg-block">
+      <app-login-sign-up></app-login-sign-up>
+    </div>
+
+  </div>
+</div>
