@@ -29,6 +29,7 @@ Route::get('/adminpage', [authmanager::class , 'adminpage'])->name('adminpage')-
 // clients page is inside the admin page
 
 Route::get('/adminpage/clients', [authmanager::class , 'clients'])->name('clients');
+Route::get('/myProperties', [authmanager::class , 'ownerproperties'])->name('myProperties');
 // add route to delete a client
 Route::get('/adminpage/clients/delete/{id}', [authmanager::class , 'deleteclient'])->name('deleteclient');
 Route::get('/rent', [authmanager::class ,'rent'])->name('rent');
@@ -38,5 +39,13 @@ Route::get('/add-property', [authmanager::class ,'addproperty'])->name('add-prop
 // Route::get('/add-property', [authmanager::class ,'addproperty'])->name('add-property');
 Route::post('/add-property', [authmanager::class ,'postproperty'])->name('postproperty');
 Route::get('/property/{id}', [authmanager::class ,'property'])->name('property');
+Route::post('/delete-client/{id}', [authmanager::class ,'deleteClient'])->name('deleteClient');
+Route::post('/delete-property/{id}', [authmanager::class ,'deleteProperty'])->name('deleteproperty');
+Route::get('/clients', [authmanager::class ,'clients_json'])->name('clients');
+Route::get('/owners', [authmanager::class ,'owners'])->name('clients');
+Route::get('/properties', [authmanager::class ,'properties'])->name('properties');
+Route::post('/edit-client/{id}', [authmanager::class ,'editClient'])->name('editclient');
+Route::post('/edit-property/{id}', [authmanager::class ,'editProperty'])->name('editProperty');
+Route::post('/update-property/{id}', [authmanager::class ,'updateProperty'])->name('updateProperty');
 
 

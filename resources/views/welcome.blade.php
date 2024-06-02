@@ -39,14 +39,22 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ml-auto align-items-center">
                             <li class="nav-item active">
-                                <a class="nav-link main_color f16" href="{{ route('adminpage') }}">Admin <span
-                                        class="sr-only">(current)</span></a>
+                                @if (Auth::check())
+                                    @if (Auth::user()->usertype == 'owner')
+                                        <a class="nav-link main_color f16" href="{{ route('myProperties') }}">My
+                                            properties</a>
+                                    @else
+                                        <a class="nav-link main_color f16" href="{{ route('adminpage') }}">Admin <span
+                                                class="sr-only">(current)</span></a>
+                                    @endif
+                                @endif
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link main_color f16" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link main_color f16" href="{{route('buy')}}">Buy</a>
+                                <a class="nav-link main_color f16" href="{{ route('buy') }}">Buy</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link main_color f16" href="{{ route('rent') }}">Rent</a>
@@ -302,7 +310,7 @@
                                 <a class="nav-link text-white py-2 px-0" href="/">Home </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white py-2 px-0" href="{{route('buy')}}">Buy </a>
+                                <a class="nav-link text-white py-2 px-0" href="{{ route('buy') }}">Buy </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white py-2 px-0" href="{{ route('rent') }}">Rent </a>

@@ -12,3 +12,7 @@ body {
     height: 600px !important;
     object-fit: cover !important;
 }
+.custom-control-input:checked~.custom-control-label::before{
+    background-color: #073937  !important;
+    border-color: #073937  !important;
+}

@@ -29,8 +29,26 @@ class authmanager extends Controller
     function property($id)
     {
         $property = DB::table('properties')->where('id', $id)->first();
-        $property->owner= DB::table('users')->where('id', $property->propertyownerid)->first();
+        $property->owner = DB::table('users')->where('id', $property->propertyownerid)->first();
         return view('property', ['property' => $property]);
+    }
+    function clients_json()
+    {
+        // get client where iser type = client and active = 1
+        $clients = DB::table('users')->where('usertype', "client")->where('active', 1)->get();
+        return $clients;
+    }
+    function owners()
+    {
+        // get client where iser type = client and active = 1
+        $clients = DB::table('users')->where('usertype', "owner")->where('active', 1)->get();
+        return $clients;
+    }
+    function properties()
+    {
+        // get client where iser type = client and active = 1
+        $properties = DB::table('properties')->where('active', 1)->get();
+        return $properties;
     }
     function rent(Request $request)
     {
@@ -58,7 +76,59 @@ class authmanager extends Controller
         return view('rent', ['properties' => $properties, 'provinces' => $provinces, 'minprice' => $minprice, 'maxprice' => $maxprice]);
 
     }
-
+    function deleteClient(Request $request)
+    {
+        //    soft delete users where active = 0
+        $user = User::find($request->id);
+        $user->active = 0;
+        $user->save();
+        return ['status' => 'success'];
+    }
+    function deleteProperty(Request $request)
+    {
+        //    soft delete users where active = 0
+        $property = DB::table('properties')->where('id', $request->id)->first();
+        $property->active = 0;
+        return ['status' => 'success'];
+    }
+    function editClient(Request $request, $id)
+    {
+        $user = User::find($id);
+        $request->name ? $user->name = $request->name : null;
+        $request->username ? $user->username = $request->username : null;
+        $request->email ? $user->email = $request->email : null;
+        $request->phone_number ? $user->phone_number = $request->phone_number : null;
+        $user->save();
+        return $user;
+    }
+    function editProperty(Request $request, $id)
+    {
+        $property = DB::table('properties')->where('id', $id)->first();
+        $property = DB::table('properties')
+            ->where('id', $id)
+            ->update(['is_available' => $request->is_available]);
+        // return the updated property
+        $property = DB::table('properties')->where('id', $id)->first();
+        $property->owner = DB::table('users')->where('id', $property->propertyownerid)->first();
+        return view('property', ['property' => $property]);
+    }
+    function updateProperty (Request $request,$id ){
+        $property = DB::table('properties')->where('id', $id)->first();
+        $property = DB::table('properties')
+            ->where('id', $id)
+            ->update(['is_available' => $request->is_available?  $request->is_available: $property->is_available,
+                'description' => $request->description?  $request->description: $property->description,
+                'province' => $request->province?  $request->province: $property->province,
+                'address' => $request->address?  $request->address: $property->address,
+                'message' => $request->message?  $request->message: $property->message,
+                'price' => $request->price?  $request->price: $property->price,
+                'forrent'=> $request->has('forrent') ? $request->forrent : $property->forrent,
+                'rooms_number' => $request->rooms_number?  $request->rooms_number: $property->rooms_number,]);
+        // return the updated property
+        $property = DB::table('properties')->where('id', $id)->first();
+        $property->owner = DB::table('users')->where('id', $property->propertyownerid)->first();
+        return $property;
+    }
     function buy(Request $request)
     {
 
@@ -94,7 +164,32 @@ class authmanager extends Controller
         $clients = DB::table('users')->where('usertype', "client")->get();
         return view('clients', ['clients' => $clients]);
     }
+    function ownerproperties(Request $request)
+    {
+        $query = DB::table('properties');
+        $minprice = DB::table('properties')->select('*')->min('price');
+        $maxprice = DB::table('properties')->max('price');
+        if ($request->filled('province')) {
+            $query->where('province', $request->province);
+        }
+        if ($request->filled('room')) {
+            $query->where('rooms_number', $request->room);
+        }
 
+        if ($request->filled('minPrice')) {
+            $query->where('price', '>=', $request->minPrice * $maxprice / 100);
+        }
+
+        if ($request->filled('maxPrice')) {
+            $query->where('price', '<=', $request->maxPrice * $maxprice / 100);
+        }
+        $query->where('propertyownerid', Auth::user()->id);
+        $properties = $query->get();
+        $provinces = DB::table('properties')->select('province')->distinct()->get();
+        return view('myProperties', ['properties' => $properties, 'provinces' => $provinces, 'minprice' => $minprice, 'maxprice' => $maxprice]);
+        // $properties = DB::table('properties')->where('propertyownerid', Auth::user()->id)->get();
+        // return view('myProperties', ['properties' => $properties]);
+    }
     function home()
     {
         $provinces = DB::table('properties')->select('province')->distinct()->get();
@@ -139,7 +234,7 @@ class authmanager extends Controller
         $data['forrent'] = $request->forrent;
         $data['rooms_number'] = $request->rooms_number;
         $data['propertyownerid'] = Auth::user()->id;
-        $data['propertytype']="Hotel";
+        $data['propertytype'] = "Hotel";
         $data['images'] = json_encode($images);
         $property = DB::table('properties')->insert($data);
         if ($property) {
@@ -165,17 +260,17 @@ class authmanager extends Controller
     function registerpost(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'username' => 'required',
-            'password' => 'required',
-            'phone_number' => 'required'
+            "name" => "required",
+            "email" => "required|email|unique:users",
+            "username" => "required",
+            "password" => "required",
+            "phone_number" => "required"
         ]);
         $data['username'] = $request->username;
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['phone_number'] = $request->phone_number;
-        $data['usertype'] = "client";
+        $data['usertype'] =$request->usertype ? $request->usertype : "client";
         $data['password'] = Hash::make($request->password);
         // dd($data);
         $user = User::create($data);

@@ -32,10 +32,10 @@
                     <a class="nav-link text-white f16" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white f16" href="/buy">Buy</a>
+                    <a class="nav-link text-white f16" href="{{ route('rent') }}">Rent</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white f16" href="/add-property">Sell</a>
+                    <a class="nav-link text-white f16" href="{{ route('add-property') }}">Sell</a>
                 </li>
                 @if (!Auth::check())
                     <li class="nav-item d-md-none">
@@ -60,12 +60,14 @@
     </div>
 
     <div class="container">
-        <div class="d-flex main_color py-4">
-            <h1>Easyrent</h1>
-            <span class="material-symbols-outlined">
-                real_estate_agent
-            </span>
-        </div>
+        <a href="/" class="clickable">
+            <div class="d-flex main_color py-4">
+                <h1>Easyrent</h1>
+                <span class="material-symbols-outlined">
+                    real_estate_agent
+                </span>
+            </div>
+        </a>
         <div class="row">
             <div class="col-md-2">
                 <span class="filter_text"><b class="d-flex align-items-center ">Filter <span
@@ -127,11 +129,9 @@
 
                                     <div class="carousel-inner">
                                         @foreach (json_decode($item->images) as $key => $image)
-                                            <div
-                                                class="carousel-item {{ $key == 0 ? 'active' : '' }} {{ $item->is_available ? '' : 'img_overlay' }}">
+                                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                                 <img src="{{ asset('images/' . $image) }}"
-                                                    class="d-block w-100 br_8 carousel_img image" alt="...">
-                                                <div class="overlay">This property is no longer available</div>
+                                                    class="d-block w-100 br_8 carousel_img" alt="...">
                                             </div>
                                         @endforeach
                                     </div>
@@ -175,7 +175,7 @@
     <script>
         var min = {{ $minprice }};
         var max = {{ $maxprice }};
-        var option = "rent";
+        var option = "my-properties";
     </script>
     <script src="{{ asset('js/rangeslider.umd.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>

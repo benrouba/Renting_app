@@ -60,12 +60,14 @@
     </div>
 
     <div class="container">
-        <div class="d-flex main_color py-4">
-            <h1>Easyrent</h1>
-            <span class="material-symbols-outlined">
-                real_estate_agent
-            </span>
-        </div>
+        <a href="/" class="clickable">
+            <div class="d-flex main_color py-4">
+                <h1>Easyrent</h1>
+                <span class="material-symbols-outlined">
+                    real_estate_agent
+                </span>
+            </div>
+        </a>
         <div class="row">
             <div class="col-md-2">
                 <span class="filter_text"><b class="d-flex align-items-center ">Filter <span
@@ -127,9 +129,12 @@
 
                                     <div class="carousel-inner">
                                         @foreach (json_decode($item->images) as $key => $image)
-                                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                            <div
+                                                class="carousel-item position-relative {{ $key == 0 ? 'active' : '' }} {{ $item->is_available ? '' : 'img_overlay' }}">
                                                 <img src="{{ asset('images/' . $image) }}"
-                                                    class="d-block w-100 br_8 carousel_img" alt="...">
+                                                    class="d-block w-100 br_8 carousel_img image" alt="...">
+                                                <div class="overlay">This property is no longer available</div>
+
                                             </div>
                                         @endforeach
                                     </div>
@@ -173,6 +178,7 @@
     <script>
         var min = {{ $minprice }};
         var max = {{ $maxprice }};
+        var option = "buy";
     </script>
     <script src="{{ asset('js/rangeslider.umd.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>

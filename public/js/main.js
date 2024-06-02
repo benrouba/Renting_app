@@ -2,6 +2,9 @@
 var url = new URL(window.location.href);
 var min_ = url.searchParams.get("minPrice") || 0;
 var max_ = url.searchParams.get("maxPrice") || 100;
+// getthe variable option from the view file
+var option = option
+console.log(option);
 var url = new URL(window.location.href);
 var province = url.searchParams.get("province") || "";
 var room = url.searchParams.get("room") || "";
@@ -39,7 +42,8 @@ rangeSlider(document.querySelector("#range-slider-example"), {
         min = valueSet[0];
         max = valueSet[1];
         // redirect to the url with the minPrice and maxPrice parameters
-        window.location.href = "/rent?province=" + province + "&room=" + room+ "&minPrice=" + min + "&maxPrice=" + max;
+
+        window.location.href = "/"+option+"?province=" + province + "&room=" + room+ "&minPrice=" + min + "&maxPrice=" + max;
     },
 });
 $(document).ready(function () {
@@ -50,21 +54,21 @@ $(document).ready(function () {
     var room =  url.searchParams.get("room") || ""
     $("#reset").click(function () {
         // redirect to the url without any parameters
-        window.location.href = "/rent";
+        window.location.href = "/"+option;
     });
     // if the province button is clicked
     $(".province").click(function () {
         // get the value of the button
          province = $(this).val();
         // redirect to the url with the province parameter
-        window.location.href = "/rent?province=" + province + "&room=" + room+ "&minPrice=" + min_ + "&maxPrice=" + max_;
+        window.location.href =  "/"+option+"?province=" + province + "&room=" + room+ "&minPrice=" + min_ + "&maxPrice=" + max_;
     });
     // if the room button is clicked
     $(".room").click(function () {
         // get the value of the button
          room = $(this).val();
         // redirect to the url with the room parameter
-        window.location.href = "/rent?province=" + province + "&room=" + room+ "&minPrice=" + min_ + "&maxPrice=" + max_;
+        window.location.href =  "/"+option+"?province=" + province + "&room=" + room+ "&minPrice=" + min_ + "&maxPrice=" + max_;
     });
 
 });

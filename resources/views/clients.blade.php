@@ -79,8 +79,7 @@
     </div>
 </div>
 
-<body>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
@@ -89,6 +88,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+<script>
+    $(document).ready(function() {
+        $('.btn').click(function() {
+            var id = $(this).closest('tr').find('th').text();
+        //    get only the first word of the id
+            console.log(id.split(' ')[0]);
+        })
+        $('.btn-danger').click(function() {
+            // send a request to delete the client
+            $.ajax({
+                url: '/delete-client',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: {{ $client->id }}
+                },
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        });
+    });
+</script>
+<body>
+
 </body>
 
 </html>
