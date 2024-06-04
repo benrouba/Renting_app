@@ -51,16 +51,10 @@ const routes: Routes = [
     path: "",
     component: ParentComponent,
     children: [
-      { path: "dashboard", component: DashboardComponent },
-      { path: "medical-history", component: MedicalHistoryComponent },
-      { path: "my-patients", component: MyPatientsComponent },
-      { path: "appointment", component: AppointmentComponent },
-      { path: "messages", component: MessagesComponent },
       { path: "clients", component: ClientsComponent },
       { path: "owners", component: PropertyOwnersComponent },
       { path: "properties", component: PropertiesComponent },
-      { path: "my-patients/patient-details/:id", component: PatientDetailsComponent },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: 'clients', pathMatch: 'full' },
     ]
   },
   { path: "profile", component: ProfileComponent, canActivate: [authGuard] },

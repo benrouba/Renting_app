@@ -30,6 +30,7 @@ class authmanager extends Controller
     {
         $property = DB::table('properties')->where('id', $id)->first();
         $property->owner = DB::table('users')->where('id', $property->propertyownerid)->first();
+        (strlen($property->interested_clients) > 0) ? $property->interested_clients = json_decode(DB::table('users')->whereIn('id', json_decode($property->interested_clients))->get()) : null;
         return view('property', ['property' => $property]);
     }
     function clients_json()
@@ -104,26 +105,35 @@ class authmanager extends Controller
     function editProperty(Request $request, $id)
     {
         $property = DB::table('properties')->where('id', $id)->first();
+        $interested_clients = $property->interested_clients ? json_decode($property->interested_clients) : [];
+        array_push($interested_clients, Auth::user()->id);
         $property = DB::table('properties')
             ->where('id', $id)
-            ->update(['is_available' => $request->is_available]);
-        // return the updated property
+            ->update([
+                'is_available' => $request->is_available ? $request->is_available : $property->is_available,
+                'interested_clients' => $interested_clients,
+            ]);
         $property = DB::table('properties')->where('id', $id)->first();
         $property->owner = DB::table('users')->where('id', $property->propertyownerid)->first();
         return view('property', ['property' => $property]);
     }
-    function updateProperty (Request $request,$id ){
+    function updateProperty(Request $request, $id)
+    {
         $property = DB::table('properties')->where('id', $id)->first();
         $property = DB::table('properties')
             ->where('id', $id)
-            ->update(['is_available' => $request->is_available?  $request->is_available: $property->is_available,
-                'description' => $request->description?  $request->description: $property->description,
-                'province' => $request->province?  $request->province: $property->province,
-                'address' => $request->address?  $request->address: $property->address,
-                'message' => $request->message?  $request->message: $property->message,
-                'price' => $request->price?  $request->price: $property->price,
-                'forrent'=> $request->has('forrent') ? $request->forrent : $property->forrent,
-                'rooms_number' => $request->rooms_number?  $request->rooms_number: $property->rooms_number,]);
+            ->update([
+                'is_available' => $request->is_available ? $request->is_available : $property->is_available,
+                'description' => $request->description ? $request->description : $property->description,
+                'province' => $request->province ? $request->province : $property->province,
+                'address' => $request->address ? $request->address : $property->address,
+                'message' => $request->message ? $request->message : $property->message,
+                'price' => $request->price ? $request->price : $property->price,
+                'forrent' => $request->has('forrent') ? $request->forrent : $property->forrent,
+                'rooms_number' => $request->rooms_number ? $request->rooms_number : $property->rooms_number,
+                'longitude' => $request->longitude ? $request->longitude : $property->longitude,
+                'latitude' => $request->latitude ? $request->latitude : $property->latitude,
+            ]);
         // return the updated property
         $property = DB::table('properties')->where('id', $id)->first();
         $property->owner = DB::table('users')->where('id', $property->propertyownerid)->first();
@@ -213,6 +223,8 @@ class authmanager extends Controller
             'forrent' => 'required',
             'rooms_number' => 'required',
             'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg,wepb',
+            'longitude' => 'required',
+            'latitude' => 'required',
         ]);
         $images = [];
         if ($request->hasFile('images')) {
@@ -236,6 +248,8 @@ class authmanager extends Controller
         $data['propertyownerid'] = Auth::user()->id;
         $data['propertytype'] = "Hotel";
         $data['images'] = json_encode($images);
+        $data['longitude'] = $request->longitude;
+        $data['latitude'] = $request->latitude;
         $property = DB::table('properties')->insert($data);
         if ($property) {
             return redirect(route('rent'))->with("success", 'Property added successfully');
@@ -264,13 +278,14 @@ class authmanager extends Controller
             "email" => "required|email|unique:users",
             "username" => "required",
             "password" => "required",
-            "phone_number" => "required"
+            "phone_number" => "required",
+            "usertype" => "required"
         ]);
         $data['username'] = $request->username;
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['phone_number'] = $request->phone_number;
-        $data['usertype'] =$request->usertype ? $request->usertype : "client";
+        $data['usertype'] = $request->usertype ;
         $data['password'] = Hash::make($request->password);
         // dd($data);
         $user = User::create($data);

@@ -1,18 +1,35 @@
-
 body {
     font-family: 'Roboto', sans-serif;
     font-family: 'Rubik', sans-serif;
     font-size: large;
 
 }
+
 .f_26 {
     font-size: 26px;
 }
-.carousel_img{
+
+.carousel_img {
     height: 600px !important;
     object-fit: cover !important;
 }
-.custom-control-input:checked~.custom-control-label::before{
-    background-color: #073937  !important;
-    border-color: #073937  !important;
+
+a,
+a:hover {
+    color: #000 !important;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    background-color: #073937 !important;
+    border-color: #073937 !important;
+}
+.green_color{
+    color: #073937 !important;
+
+}
+.show_interest_btn {
+    background-color: #073937 !important;
+    color: #fff !important;
+    padding: .75rem 2.5rem;
+    border-radius: 10px;
 }

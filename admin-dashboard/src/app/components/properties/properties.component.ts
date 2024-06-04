@@ -32,6 +32,8 @@ export class PropertiesComponent implements OnInit {
       rooms_number: new FormControl("", Validators.required),
       forrent: new FormControl("", Validators.required),
       is_available: new FormControl("", Validators.required),
+      longitude: new FormControl("", Validators.required),
+      latitude: new FormControl("", Validators.required),
     });
     this.nameService.setTitle('Properties')
     this.route.queryParamMap.subscribe(param => {
@@ -88,6 +90,8 @@ export class PropertiesComponent implements OnInit {
       forrent: client.forrent,
       is_available: client.is_available,
       active: client.active,
+      latitude: client.latitude,
+      longitude: client.longitude,
     })
   }
   addClient() {

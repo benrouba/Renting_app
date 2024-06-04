@@ -146,6 +146,18 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
+              <label for="longitude" class="poppinsSemiBold f14 deepBlue">Longtitude</label>
+              <input type="text" class="form-control f14 poppinsRegular black" id="longitude" formControlName="longitude"
+                [ngClass]="{'is-invalid': submit &&f['longitude'].errors}" placeholder="Enter Your longitude here">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="latitude" class="poppinsSemiBold f14 deepBlue">latitude</label>
+              <input type="text" class="form-control f14 poppinsRegular black" id="latitude" formControlName="latitude"
+              [ngClass]="{'is-invalid': submit &&f['latitude'].errors}" placeholder="Enter Your latitude here">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
               <label for="description" class="poppinsSemiBold f14 deepBlue">Description</label>
               <textarea class="form-control f14 poppinsRegular black" id="exampleFormControlTextarea1"
                 formControlName="description" [ngClass]="{'is-invalid': submit &&f['description'].errors}" rows="4"

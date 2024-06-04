@@ -168,6 +168,16 @@
                         <option value="Relizane" name="Relizane">Relizane</option>
                     </select>
                 </div>
+                <div class="form-group col-md-6">
+                    <label for="address">Longitude</label>
+                    <input type="text" class="form-control" id="longitude" name="longitude"
+                        placeholder="Enter the Longitude">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="address">Latitude</label>
+                    <input type="text" class="form-control" id="latitude" name="latitude"
+                        placeholder="Enter the Latitude">
+                </div>
                 <div class="form-group col-md-4 position-relative">
                     <label for="price">Price</label>
                     <input type="number" class="form-control" id="price" name="price"
