@@ -209,14 +209,14 @@
                 </p>
                 <ul class="nav nav-tabs py-3">
                     @foreach ($provinces as $key => $item)
-                        <li class=""><a href="#{{ $item->province }}" data-toggle="tab"
+                        <li class=""><a href="#regioin_{{ $item->property->id }}" data-toggle="tab"
                                 class="main_color f18 pr-3 {{ $key == 0 ? 'active' : '' }}">{{ $item->province }}</a>
                         </li>
                     @endforeach
                 </ul>
                 <div class="tab-content pb-5">
                     @foreach ($provinces as $key => $item)
-                        <div class="tab-pane pt-5 {{ $key == 0 ? 'active' : '' }}" id="{{ $item->province }}">
+                        <div class="tab-pane pt-5 {{ $key == 0 ? 'active' : '' }}" id="regioin_{{ $item->property->id }}">
                             <div class="row">
                                 <div class="col-md-6">
                                     <img src="{{ asset('images/' . $item->property->image) }}" alt=""

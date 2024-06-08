@@ -4,44 +4,65 @@ body {
     font-size: large;
 
 }
-input,select{
+
+input,
+select {
     height: 48px !important;
 }
-a, a:hover, a:active, a:visited {
+
+a,
+a:hover,
+a:active,
+a:visited {
     color: #073937 !important;
     text-decoration: none !important;
 }
-.navbar-nav{
+
+.navbar-nav {
     margin-left: auto !important;
 }
-.submit_btn{
+
+.submit_btn {
     background-color: #073937 !important;
     color: white !important;
     padding: .75rem 2.5rem !important;
 }
-.beige_back{
-    background-color: #fffbf2  !important;
+
+.beige_back {
+    background-color: #fffbf2 !important;
 }
-header{
+
+header {
     position: fixed;
     width: 100%;
 }
-@media (min-width: 500px){
-   .container{
-    width: 500px !important;
-   }
+
+@media (min-width: 500px) {
+    .container {
+        width: 500px !important;
+    }
 }
-.container{
+
+.container {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
     padding-top: 100px !important;
 }
-html,body{
+
+html,
+body {
     height: 100%;
 }
-form{
+
+form {
     width: 100%;
 
+}
+
+.alert {
+    position: absolute !important;
+    top: 75px;
+    right: 10px;
 }

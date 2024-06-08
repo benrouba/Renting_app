@@ -110,11 +110,12 @@ class authmanager extends Controller
         $property = DB::table('properties')
             ->where('id', $id)
             ->update([
-                'is_available' => $request->is_available ? $request->is_available : $property->is_available,
+                'is_available' => $request->has('is_available') ? $request->is_available : $property->is_available,
                 'interested_clients' => $interested_clients,
             ]);
         $property = DB::table('properties')->where('id', $id)->first();
         $property->owner = DB::table('users')->where('id', $property->propertyownerid)->first();
+        $property->interested_clients = json_decode(DB::table('users')->whereIn('id', json_decode($property->interested_clients))->get());
         return view('property', ['property' => $property]);
     }
     function updateProperty(Request $request, $id)
@@ -123,7 +124,7 @@ class authmanager extends Controller
         $property = DB::table('properties')
             ->where('id', $id)
             ->update([
-                'is_available' => $request->is_available ? $request->is_available : $property->is_available,
+                'is_available' => $request->has('is_available') ? $request->is_available : $property->is_available,
                 'description' => $request->description ? $request->description : $property->description,
                 'province' => $request->province ? $request->province : $property->province,
                 'address' => $request->address ? $request->address : $property->address,
@@ -285,7 +286,7 @@ class authmanager extends Controller
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['phone_number'] = $request->phone_number;
-        $data['usertype'] = $request->usertype ;
+        $data['usertype'] = $request->usertype;
         $data['password'] = Hash::make($request->password);
         // dd($data);
         $user = User::create($data);

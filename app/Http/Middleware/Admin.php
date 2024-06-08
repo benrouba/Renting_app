@@ -17,7 +17,7 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
         if (Auth()->user()->usertype == 'admin') {
-            return $next($request);
+            return redirect()->away('http://localhost:4200');
         }
         abort(401);
     }
